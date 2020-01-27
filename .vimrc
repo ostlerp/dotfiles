@@ -6,11 +6,21 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-sensible'
-
 Plug 'ajmwagar/vim-deus'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 call plug#end()
 
 colors deus
 set number
+
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+set expandtab
+set shiftwidth=2
+set autoindent
+set smartindent 
