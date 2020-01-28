@@ -14,6 +14,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'vim-airline/vim-airline'
+Plug 'webdevel/tabulous'
 
 call plug#end()
 
