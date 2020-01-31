@@ -28,6 +28,8 @@ set expandtab
 set shiftwidth=2
 set autoindent
 set smartindent 
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set list
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
