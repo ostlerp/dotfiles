@@ -17,6 +17,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'webdevel/tabulous'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'mileszs/ack.vim'
 
 call plug#end()
 
