@@ -35,4 +35,4 @@ set list
 
 set statusline+=%#warningmsg#
 set statusline+=%*
-
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
