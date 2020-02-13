@@ -20,6 +20,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'myusuf3/numbers.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'kshenoy/vim-signature'
 
 call plug#end()
 
