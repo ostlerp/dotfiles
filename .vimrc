@@ -18,6 +18,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
+Plug 'myusuf3/numbers.vim'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
