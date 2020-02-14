@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
 Plug 'leafgarland/typescript-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'vim-airline/vim-airline'
 Plug 'webdevel/tabulous'
@@ -25,7 +26,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
-set termguicolors
 syntax on
 
 colorscheme gruvbox
@@ -48,10 +48,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:airline_theme='papercolor'
+let g:airline_theme='molokai'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'short_path'
-
 
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 let g:ctrlp_map = '<c-p>'
