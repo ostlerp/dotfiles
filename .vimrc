@@ -7,6 +7,9 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/syntastic'
+Plug 'sheerun/vim-polyglot'
+Plug 'leafgarland/typescript-vim'
+
 Plug 'vim-airline/vim-airline'
 Plug 'webdevel/tabulous'
 Plug 'tpope/vim-unimpaired'
