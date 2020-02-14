@@ -7,7 +7,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/syntastic'
-Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'webdevel/tabulous'
 Plug 'tpope/vim-unimpaired'
@@ -24,7 +23,6 @@ Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 set termguicolors
-syntax enable
 syntax on
 
 colorscheme gruvbox
