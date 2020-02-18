@@ -62,3 +62,4 @@ set wildignore+=*/temp/*,*/dist/*,*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 
+command E Explore
