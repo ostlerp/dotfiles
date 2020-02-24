@@ -23,6 +23,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'kshenoy/vim-signature'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'yuttie/comfortable-motion.vim'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
@@ -62,4 +64,4 @@ set wildignore+=*/temp/*,*/dist/*,*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 
-command E Explore
+command! E Explore
