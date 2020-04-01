@@ -1,4 +1,3 @@
-map <Space> <Leader>
 map <Leader>h <c-w>h
 map <Leader>j <c-w>j
 map <Leader>k <c-w>k
@@ -26,11 +25,16 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'kshenoy/vim-signature'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-vinegar'
 Plug 'easymotion/vim-easymotion'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'romainl/vim-cool'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'djoshea/vim-autoread'
+Plug 'thaerkh/vim-workspace'
+
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 
 call plug#end()
 
@@ -70,6 +74,11 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 let g:peekaboo_window = 'vert bo new45'
 
+let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
+let g:ranger_map_keys = 0
+let g:ranger_replace_netrw = 1
+map - :Ranger<CR>
+
 set wildignore+=*/temp/*,*/dist/*,*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
@@ -78,3 +87,6 @@ command! E Explore
 
 map <Leader> <Plug>(easymotion-prefix)
 nmap s <Plug>(easymotion-s)
+
+:nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+
