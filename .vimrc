@@ -51,6 +51,7 @@ set smartindent
 set listchars=tab:>-,trail:~,extends:>,precedes:<
 set list
 set modifiable
+set clipboard=unnamed
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -89,4 +90,5 @@ map <Leader> <Plug>(easymotion-prefix)
 nmap s <Plug>(easymotion-s)
 
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+:nmap <Leader>c :let @* = expand("%")<CR>
 
