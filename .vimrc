@@ -1,3 +1,7 @@
+set nobackup
+set noswapfile
+set noundofile
+
 map <Leader>h <c-w>h
 map <Leader>j <c-w>j
 map <Leader>k <c-w>k
