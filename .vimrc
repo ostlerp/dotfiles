@@ -2,6 +2,8 @@ set nobackup
 set noswapfile
 set noundofile
 
+map <Leader>x :bd<CR>
+map <Leader>X :bufdo bd<CR>
 map <Leader>h <c-w>h
 map <Leader>j <c-w>j
 map <Leader>k <c-w>k
@@ -55,7 +57,6 @@ set smartindent
 set listchars=tab:>-,trail:~,extends:>,precedes:<
 set list
 set modifiable
-set clipboard=unnamed
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
