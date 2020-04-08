@@ -5,3 +5,5 @@
 !.tmux.conf
 !.zshrc
 !.config/ranger/rc.conf
+!.config/ranger/scope.sh
+!.config/nvim/init.vim
