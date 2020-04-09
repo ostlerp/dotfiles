@@ -42,6 +42,8 @@ Plug 'thaerkh/vim-workspace'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 
+Plug 'mhinz/vim-startify'
+
 call plug#end()
 
 syntax on

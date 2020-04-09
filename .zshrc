@@ -109,3 +109,7 @@ eval "$(direnv hook zsh)"
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /Users/postler/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/postler/.nvm/versions/node/v11.9.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+fix() {
+  git rebase -i HEAD~$1
+}
