@@ -35,7 +35,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'romainl/vim-cool'
-Plug 'jeetsukumaran/vim-buffergator'
 Plug 'djoshea/vim-autoread'
 Plug 'thaerkh/vim-workspace'
 
@@ -99,3 +98,4 @@ nmap s <Plug>(easymotion-s)
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 :nmap <Leader>c :let @* = expand("%")<CR>
 
+map <Leader>b :CtrlPBuffer<CR>
