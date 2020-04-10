@@ -7,3 +7,4 @@
 !.config/ranger/rc.conf
 !.config/ranger/scope.sh
 !.config/nvim/init.vim
+!.config/tmuxinator/dev.yml

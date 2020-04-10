@@ -113,3 +113,5 @@ eval "$(direnv hook zsh)"
 fix() {
   git rebase -i HEAD~$1
 }
+
+alias dev="tmuxinator start dev"
