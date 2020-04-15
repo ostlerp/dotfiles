@@ -1,7 +1,3 @@
-set nobackup
-set noswapfile
-set noundofile
-
 map <Leader>x :bd<CR>
 map <Leader>X :bufdo bd<CR>
 map <Leader>h <c-w>h
@@ -10,8 +6,12 @@ map <Leader>k <c-w>k
 map <Leader>l <c-w>l
 map <c-k> {zz
 map <c-j> }zz
+map <c-d> <c-d>zz
+map <c-u> <c-u>zz
 map j jzz
 map k kzz
+vnoremap <c-J> :m '>+1<CR>gv=gv
+vnoremap <c-K> :m '<-2<CR>gv=gv
 
 call plug#begin('~/.vim/plugged')
 
@@ -21,9 +21,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'webdevel/tabulous'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'myusuf3/numbers.vim'
@@ -32,16 +29,19 @@ Plug 'kshenoy/vim-signature'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
-Plug 'yuttie/comfortable-motion.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'romainl/vim-cool'
 Plug 'djoshea/vim-autoread'
 Plug 'thaerkh/vim-workspace'
-
+Plug 'machakann/vim-highlightedyank'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
-
 Plug 'mhinz/vim-startify'
+
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
@@ -58,10 +58,13 @@ set smartindent
 set listchars=tab:>-,trail:~,extends:>,precedes:<
 set list
 set modifiable
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+set incsearch
+set ignorecase
+set smartcase
+set inccommand=nosplit
+set nobackup
+set noswapfile
+set noundofile
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -78,6 +81,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 let g:peekaboo_window = 'vert bo new45'
 
@@ -90,12 +94,23 @@ set wildignore+=*/temp/*,*/dist/*,*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 
-command! E Explore
-
-map <Leader> <Plug>(easymotion-prefix)
 nmap s <Plug>(easymotion-s)
 
-:nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
-:nmap <Leader>c :let @* = expand("%")<CR>
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <Leader>s :Ack! <C-r><C-w> src/*
+nmap <Leader>c :let @* = expand("%")<CR>
 
 map <Leader>b :CtrlPBuffer<CR>
+
+" When on the first character of a line, do some shenanigans so the insert
+" cursor is indented correctly, otherwise just begin insert mode
+function InsertIndent()
+  if getcurpos()[2] == 1
+    :exe "normal! Ih\<esc>==x"
+    :startinsert!
+  else
+    :startinsert
+  endif
+endfunction
+
+nnoremap i :call InsertIndent()<CR>

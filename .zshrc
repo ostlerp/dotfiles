@@ -114,4 +114,12 @@ fix() {
   git rebase -i HEAD~$1
 }
 
+sauce () {
+  yarn test:e2e:sauce:all "$1"
+}
+
+url () {
+  export LAUNCH_URL="$1"
+}
+
 alias dev="tmuxinator start dev"
