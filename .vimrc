@@ -18,7 +18,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
 Plug 'leafgarland/typescript-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'webdevel/tabulous'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -101,6 +102,7 @@ nnoremap <Leader>s :Ack! <C-r><C-w> src/*
 nmap <Leader>c :let @* = expand("%")<CR>
 
 map <Leader>b :CtrlPBuffer<CR>
+map <Leader>g :YcmCompleter GoTo<CR>
 
 " When on the first character of a line, do some shenanigans so the insert
 " cursor is indented correctly, otherwise just begin insert mode
