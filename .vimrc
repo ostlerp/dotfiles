@@ -1,18 +1,3 @@
-map <Leader>x :bd<CR>
-map <Leader>X :bufdo bd<CR>
-map <Leader>h <c-w>h
-map <Leader>j <c-w>j
-map <Leader>k <c-w>k
-map <Leader>l <c-w>l
-map <c-k> {zz
-map <c-j> }zz
-map <c-d> <c-d>zz
-map <c-u> <c-u>zz
-map j jzz
-map k kzz
-vnoremap <c-J> :m '>+1<CR>gv=gv
-vnoremap <c-K> :m '<-2<CR>gv=gv
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/syntastic'
@@ -30,7 +15,6 @@ Plug 'kshenoy/vim-signature'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
-Plug 'junegunn/vim-peekaboo'
 Plug 'romainl/vim-cool'
 Plug 'djoshea/vim-autoread'
 Plug 'thaerkh/vim-workspace'
@@ -43,6 +27,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'TaDaa/vimade'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 call plug#end()
 
@@ -50,7 +36,6 @@ syntax on
 
 colorscheme gruvbox
 set number
-
 set expandtab
 set shiftwidth=2
 set tabstop=2
@@ -66,6 +51,9 @@ set inccommand=nosplit
 set nobackup
 set noswapfile
 set noundofile
+set clipboard=unnamedplus
+set splitbelow
+set splitright
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -93,16 +81,11 @@ map - :Ranger<CR>
 
 set wildignore+=*/temp/*,*/dist/*,*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip
 cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack!<Space>
+
+au! FocusLost * VimadeFadeActive
+au! FocusGained * VimadeUnfadeActive
 
 nmap s <Plug>(easymotion-s)
-
-nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
-nnoremap <Leader>s :Ack! <C-r><C-w> src/*
-nmap <Leader>c :let @* = expand("%")<CR>
-
-map <Leader>b :CtrlPBuffer<CR>
-map <Leader>g :YcmCompleter GoTo<CR>
 
 " When on the first character of a line, do some shenanigans so the insert
 " cursor is indented correctly, otherwise just begin insert mode
@@ -115,4 +98,28 @@ function InsertIndent()
   endif
 endfunction
 
+nnoremap <Leader>a :Ack!<Space>
 nnoremap i :call InsertIndent()<CR>
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <Leader>s :Ack! <C-r><C-w> src/*
+nnoremap <Leader>c :let @* = expand("%")<CR>
+nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <Leader>g :YcmCompleter GoTo<CR>
+nnoremap "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
+
+nnoremap <Leader>x :bd<CR>
+nnoremap <Leader>X :bufdo bd<CR>
+map <Leader>h <c-w>h
+map <Leader>j <c-w>j
+map <Leader>k <c-w>k
+map <Leader>l <c-w>l
+map <c-k> {zz
+map <c-j> }zz
+map <c-d> <c-d>zz
+map <c-u> <c-u>zz
+map j jzz
+map k kzz
+vnoremap <c-J> :m '>+1<CR>gv=gv
+vnoremap <c-K> :m '<-2<CR>gv=gv
+tnoremap <Esc> <C-\><C-n>
+

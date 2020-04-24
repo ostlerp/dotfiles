@@ -123,3 +123,4 @@ url () {
 }
 
 alias dev="tmuxinator start dev"
+alias v=nvim
