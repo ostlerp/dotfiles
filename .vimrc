@@ -8,7 +8,6 @@ Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'webdevel/tabulous'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mileszs/ack.vim'
 Plug 'myusuf3/numbers.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kshenoy/vim-signature'
@@ -29,6 +28,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'TaDaa/vimade'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'jremmen/vim-ripgrep'
 
 call plug#end()
 
@@ -79,9 +79,6 @@ let g:ranger_map_keys = 0
 let g:ranger_replace_netrw = 1
 map - :Ranger<CR>
 
-set wildignore+=*/temp/*,*/dist/*,*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip
-cnoreabbrev Ack Ack!
-
 au! FocusLost * VimadeFadeActive
 au! FocusGained * VimadeUnfadeActive
 
@@ -98,10 +95,10 @@ function InsertIndent()
   endif
 endfunction
 
-nnoremap <Leader>a :Ack!<Space>
+nnoremap <Leader>a :Rg<Space>
 nnoremap i :call InsertIndent()<CR>
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
-nnoremap <Leader>s :Ack! <C-r><C-w> src/*
+nnoremap <Leader>s :Rg<CR>
 nnoremap <Leader>c :let @* = expand("%")<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>g :YcmCompleter GoTo<CR>
@@ -121,5 +118,4 @@ map j jzz
 map k kzz
 vnoremap <c-J> :m '>+1<CR>gv=gv
 vnoremap <c-K> :m '<-2<CR>gv=gv
-tnoremap <Esc> <C-\><C-n>
 
