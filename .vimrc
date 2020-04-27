@@ -3,7 +3,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
 Plug 'leafgarland/typescript-vim'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'webdevel/tabulous'
@@ -21,20 +20,20 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'mhinz/vim-startify'
+Plug 'jremmen/vim-ripgrep'
 
+" tpope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+
 Plug 'TaDaa/vimade'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'jremmen/vim-ripgrep'
 
 call plug#end()
 
-syntax on
-
-colorscheme gruvbox
+" configs
 set number
 set expandtab
 set shiftwidth=2
@@ -48,6 +47,7 @@ set incsearch
 set ignorecase
 set smartcase
 set inccommand=nosplit
+set nowrap
 set nobackup
 set noswapfile
 set noundofile
@@ -55,16 +55,21 @@ set clipboard=unnamedplus
 set splitbelow
 set splitright
 
+syntax on
+colorscheme gruvbox
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" airline settings
 let g:airline_theme='molokai'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'short_path'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
+" ctrlp settings
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -72,16 +77,17 @@ let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-let g:peekaboo_window = 'vert bo new45'
-
+" ranger settings
 let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
 let g:ranger_map_keys = 0
 let g:ranger_replace_netrw = 1
 map - :Ranger<CR>
 
+" vimade
 au! FocusLost * VimadeFadeActive
 au! FocusGained * VimadeUnfadeActive
 
+" easymotion
 nmap s <Plug>(easymotion-s)
 
 " When on the first character of a line, do some shenanigans so the insert
@@ -95,6 +101,7 @@ function InsertIndent()
   endif
 endfunction
 
+" leader commands
 nnoremap <Leader>a :Rg<Space>
 nnoremap i :call InsertIndent()<CR>
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
@@ -102,10 +109,11 @@ nnoremap <Leader>s :Rg<CR>
 nnoremap <Leader>c :let @* = expand("%")<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>g :YcmCompleter GoTo<CR>
-nnoremap "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
-
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>X :bufdo bd<CR>
+nnoremap "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
+
+" movement
 map <Leader>h <c-w>h
 map <Leader>j <c-w>j
 map <Leader>k <c-w>k
