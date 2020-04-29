@@ -52,6 +52,7 @@ set clipboard=unnamedplus
 set splitbelow
 set splitright
 set hidden
+set laststatus=0
 
 syntax on
 colorscheme gruvbox
@@ -60,12 +61,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
-" statusline settings
-set statusline=
-set statusline+=\ %{FugitiveHead()}
-set statusline+=\ %y
-set statusline+=\ %t%m
 
 " buftabline settings
 let g:buftabline_numbers = 1
