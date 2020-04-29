@@ -4,14 +4,11 @@ Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
 Plug 'leafgarland/typescript-vim'
 Plug 'valloric/youcompleteme'
-Plug 'vim-airline/vim-airline'
 Plug 'webdevel/tabulous'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'myusuf3/numbers.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kshenoy/vim-signature'
 Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
 Plug 'romainl/vim-cool'
 Plug 'djoshea/vim-autoread'
@@ -21,6 +18,10 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'mhinz/vim-startify'
 Plug 'jremmen/vim-ripgrep'
+Plug 'ap/vim-buftabline'
+Plug 'TaDaa/vimade'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'junegunn/limelight.vim'
 
 " tpope
 Plug 'tpope/vim-repeat'
@@ -28,13 +29,10 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 
-Plug 'TaDaa/vimade'
-Plug 'tmux-plugins/vim-tmux-focus-events'
-
 call plug#end()
 
 " configs
-set number
+set number relativenumber
 set expandtab
 set shiftwidth=2
 set tabstop=2
@@ -42,7 +40,6 @@ set autoindent
 set smartindent
 set listchars=tab:>-,trail:~,extends:>,precedes:<
 set list
-set modifiable
 set incsearch
 set ignorecase
 set smartcase
@@ -54,6 +51,7 @@ set noundofile
 set clipboard=unnamedplus
 set splitbelow
 set splitright
+set hidden
 
 syntax on
 colorscheme gruvbox
@@ -63,11 +61,14 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" airline settings
-let g:airline_theme='molokai'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'short_path'
-let g:airline#extensions#tabline#buffer_nr_show = 1
+" statusline settings
+set statusline=
+set statusline+=\ %{FugitiveHead()}
+set statusline+=\ %y
+set statusline+=\ %t%m
+
+" buftabline settings
+let g:buftabline_numbers = 1
 
 " ctrlp settings
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
@@ -84,28 +85,24 @@ let g:ranger_replace_netrw = 1
 map - :Ranger<CR>
 
 " vimade
-au! FocusLost * VimadeFadeActive
-au! FocusGained * VimadeUnfadeActive
+autocmd! FocusLost * VimadeFadeActive
+autocmd! FocusGained * VimadeUnfadeActive
+let g:vimade = {}
+let g:vimade.fadelevel = 0.3
+
+" limelight
+autocmd VimEnter * Limelight
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+let g:limelight_priority = -1
 
 " easymotion
 nmap s <Plug>(easymotion-s)
 
-" When on the first character of a line, do some shenanigans so the insert
-" cursor is indented correctly, otherwise just begin insert mode
-function InsertIndent()
-  if getcurpos()[2] == 1
-    :exe "normal! Ih\<esc>==x"
-    :startinsert!
-  else
-    :startinsert
-  endif
-endfunction
-
 " leader commands
 nnoremap <Leader>a :Rg<Space>
-nnoremap i :call InsertIndent()<CR>
-nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <Leader>s :Rg<CR>
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <Leader>c :let @* = expand("%")<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>g :YcmCompleter GoTo<CR>
