@@ -124,3 +124,5 @@ url () {
 
 alias dev="tmuxinator start dev"
 alias v=nvim
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
