@@ -3,7 +3,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
 Plug 'leafgarland/typescript-vim'
-Plug 'valloric/youcompleteme'
 Plug 'webdevel/tabulous'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kshenoy/vim-signature'
@@ -22,6 +21,7 @@ Plug 'rafaqz/ranger.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " tpope
 Plug 'tpope/vim-repeat'
@@ -32,29 +32,30 @@ Plug 'tpope/vim-surround'
 call plug#end()
 
 " configs
-set number relativenumber
-set expandtab
-set shiftwidth=2
-set tabstop=2
 set autoindent
-set smartindent
-set listchars=tab:>-,trail:~,extends:>,precedes:<
-set list
-set incsearch
-set ignorecase
-set smartcase
-set inccommand=nosplit
-set nowrap
-set nobackup
-set noswapfile
-set undodir=~/.vim/undodir
 set clipboard=unnamedplus
+set expandtab
+set formatoptions-=cro
+set hidden
+set ignorecase
+set inccommand=nosplit
+set incsearch
+set laststatus=0
+set list
+set listchars=tab:>-,trail:~,extends:>,precedes:<
+set mouse=nv
+set nobackup
+set noruler
+set noswapfile
+set nowrap
+set number relativenumber
+set shiftwidth=2
+set smartcase
+set smartindent
 set splitbelow
 set splitright
-set hidden
-set laststatus=0
-set noruler
-set formatoptions-=cro
+set tabstop=2
+set undodir=~/.vim/undodir
 
 syntax on
 colorscheme gruvbox
@@ -83,19 +84,22 @@ let g:vimade.fadelevel = 0.3
 nmap s <Plug>(easymotion-s)
 
 " vim session
-let g:workspace_session_directory = $HOME . '/.vim/sessions/'
 let g:workspace_persist_undo_history = 0
 let g:workspace_autosave_always = 1
 
+" fzf settings
+let g:fzf_command_prefix = 'Fzf'
+
 " maps
-nnoremap <Leader>a :Rg<Space>
+nnoremap <Leader>a :FzfRg<CR>
 nnoremap <Leader>s :Rg<CR>
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <silent> <Leader>c :let @* = expand("%")<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>f :BLines<CR>
-nnoremap <c-p> :Files<CR>
-nnoremap <Leader>g :YcmCompleter GoTo<CR>
+nnoremap <leader>b :FzfBuffers<CR>
+nnoremap <leader>f :FzfBLines<CR>
+nnoremap <c-p> :FzfFiles<CR>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>X :bufdo bd<CR>
 nnoremap "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
@@ -108,11 +112,11 @@ map <c-j> }zz
 map <c-d> <c-d>zz
 map <c-u> <c-u>zz
 map <silent> <c-q> :wq<CR>
-map <silent> <c-s> :w<CR>:source %<CR>
 map j jzz
 map k kzz
 map <silent> <tab> :bnext<CR>
 map <silent> <s-tab> :bprev<CR>
+map <silent> <leader><tab> :e#<CR>
 vnoremap <c-J> :m '>+1<CR>gv=gv
 vnoremap <c-K> :m '<-2<CR>gv=gv
 
