@@ -22,12 +22,14 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-scripts/ReplaceWithRegister'
 
 " tpope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
@@ -90,18 +92,21 @@ let g:workspace_autosave_always = 1
 " fzf settings
 let g:fzf_command_prefix = 'Fzf'
 
-" maps
+" fzf maps
 nnoremap <Leader>a :FzfRg<CR>
-nnoremap <Leader>s :Rg<CR>
-nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
-nnoremap <silent> <Leader>c :let @* = expand("%")<CR>
 nnoremap <leader>b :FzfBuffers<CR>
 nnoremap <leader>f :FzfBLines<CR>
 nnoremap <c-p> :FzfFiles<CR>
+
+" maps
+nnoremap <Leader>s :Rg<CR>
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <silent> <Leader>c :let @* = expand("%")<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>X :bufdo bd<CR>
+nnoremap <Leader><Leader> :cclose<CR>
 nnoremap "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
 map <Leader>h <c-w>h
 map <Leader>j <c-w>j
