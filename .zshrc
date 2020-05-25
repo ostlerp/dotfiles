@@ -54,6 +54,8 @@ ZSH_THEME="robbyrussell"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+ZSH_DISABLE_COMPFIX="true"
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -122,6 +124,8 @@ url () {
   export LAUNCH_URL="$1"
 }
 
+alias amend="git commit --amend --no-edit"
+alias force="git push origin --force-with-lease"
 alias dev="tmuxinator start dev"
 alias v=nvim
 
