@@ -44,36 +44,35 @@ windows:
       root: ~/Documents/agjs/
       layout: main-vertical
       panes:
-        - nvim
+        -
         -
   - rent-js-api: 
       root: ~/Documents/rent-js-api/
       layout: main-vertical
       panes:
-        - nvim
+        -
         -
   - rent-js: 
       root: ~/Documents/rent-js/
       layout: main-vertical
       panes:
-        - nvim
+        -
         -
   - ui-ux: 
       root: ~/Documents/ui-ux/
       layout: main-vertical
       panes:
-        - nvim
+        -
         -
   - truesearch:
       root: ~/Documents/true-search/
       layout: main-vertical
       panes:
-        - nvim
+        -
         -
   - term:
       root: ~/
   - processes:
       root: ~/Documents/agjs/
       panes: 
-        - idg start-nginx
         - selenium-standalone install && selenium-standalone start

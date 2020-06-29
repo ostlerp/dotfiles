@@ -3,7 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kshenoy/vim-signature'
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug 'easymotion/vim-easymotion'
 Plug 'romainl/vim-cool'
 Plug 'djoshea/vim-autoread'
@@ -23,6 +23,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ap/vim-css-color'
 Plug 'liuchengxu/vim-which-key'
+Plug 'k0kubun/vim-open-github'
 
 " tpope
 Plug 'tpope/vim-repeat'
@@ -30,6 +31,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-sleuth'
 
 call plug#end()
 
@@ -50,7 +52,7 @@ set nobackup
 set noruler
 set noswapfile
 set nowrap
-set number
+set number relativenumber
 set shiftwidth=2
 set smartcase
 set smartindent
@@ -59,9 +61,11 @@ set splitright
 set tabstop=2
 set undodir=~/.vim/undodir
 set wildmenu
+set cursorline
 
 syntax on
 colorscheme gruvbox
+let g:gruvbox_contrast_dark = 'hard'
 
 set statusline=
 set statusline+=%f
@@ -100,7 +104,6 @@ let g:workspace_autosave_always = 1
 let g:fzf_command_prefix = 'Fzf'
 
 " fzf maps
-nnoremap <Leader>a :FzfRg<CR>
 nnoremap <leader>b :FzfBuffers<CR>
 nnoremap <leader>f :FzfBLines<CR>
 nnoremap <c-p> :FzfGFiles<CR>
@@ -108,6 +111,7 @@ nnoremap <c-p> :FzfGFiles<CR>
 " coc maps
 map <silent> <leader>gd <Plug>(coc-definition)
 map <silent> <leader>gr <Plug>(coc-references)
+map <silent> <leader>gc <Plug>(coc-rename)
 nnoremap <silent> <leader>gg :call <SID>show_documentation()<CR>
 
 " tmux navigator
@@ -127,14 +131,17 @@ endfunction
 nnoremap <silent> <leader> :WhichKey '\'<CR>
 
 " maps
+nnoremap <Leader>a ggVG
 nnoremap <Leader>s :Rg<CR>
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <silent> <Leader>c :let @* = expand("%")<CR>
+nnoremap <silent> <Leader>C :OpenGithub<CR>
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>X :bufdo bd<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader><Leader> :cclose<CR>
+nnoremap <Bar> :close<CR>
 nnoremap "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
 nnoremap <Leader>o "ayiwOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
 map <Leader>h <c-w>h
@@ -150,8 +157,6 @@ map <silent> <tab> :bnext<CR>
 map <silent> <s-tab> :bprev<CR>
 map <silent> <leader><tab> :e#<CR>
 
-vnoremap <c-J> :m '>+1<CR>gv=gv
-vnoremap <c-K> :m '<-2<CR>gv=gv
 xnoremap <Leader>o "ayOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
 
 tnoremap <Esc> <C-\><C-n>
