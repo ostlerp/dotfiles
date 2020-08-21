@@ -95,17 +95,16 @@ let g:vimade.fadelevel = 0.3
 nmap s <Plug>(easymotion-s)
 map <Leader>+ <Plug>(easymotion-prefix)
 
-
 " vim session
 let g:workspace_persist_undo_history = 0
 let g:workspace_autosave_always = 1
 
 " fzf settings
 let g:fzf_command_prefix = 'Fzf'
+" let g:fzf_preview_window = 'right:60%'
 
 " fzf maps
 nnoremap <leader>b :FzfBuffers<CR>
-nnoremap <leader>f :FzfBLines<CR>
 nnoremap <c-p> :FzfGFiles<CR>
 
 " coc maps
@@ -140,6 +139,7 @@ nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>X :bufdo bd<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>f :%!jq .<CR>
 nnoremap <Leader><Leader> :cclose<CR>
 nnoremap <Bar> :close<CR>
 nnoremap "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
@@ -159,5 +159,5 @@ map <silent> <leader><tab> :e#<CR>
 
 xnoremap <Leader>o "ayOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
 
-tnoremap <Esc> <C-\><C-n>
+tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 tnoremap <Leader>x :bd!<CR>
