@@ -13,7 +13,7 @@ Plug 'mhinz/vim-startify'
 Plug 'jremmen/vim-ripgrep'
 Plug 'ap/vim-buftabline'
 Plug 'TaDaa/vimade'
-Plug 'rafaqz/ranger.vim'
+" Plug 'rafaqz/ranger.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
@@ -24,6 +24,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ap/vim-css-color'
 Plug 'liuchengxu/vim-which-key'
 Plug 'k0kubun/vim-open-github'
+Plug 'voldikss/vim-floaterm'
 
 " tpope
 Plug 'tpope/vim-repeat'
@@ -39,7 +40,6 @@ call plug#end()
 set autoindent
 set clipboard=unnamedplus
 set expandtab
-set formatoptions-=cro
 set hidden
 set ignorecase
 set inccommand=nosplit
@@ -67,6 +67,8 @@ syntax on
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
 
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 set statusline=
 set statusline+=%f
 set statusline+=%m
@@ -79,11 +81,15 @@ let g:syntastic_check_on_wq = 0
 " buftabline settings
 let g:buftabline_numbers = 1
 
-" ranger settings
-let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
-let g:ranger_map_keys = 0
-let g:ranger_replace_netrw = 1
-map - :RangerEdit<CR>
+" floaterm
+map <silent> - :FloatermNew ranger<CR>
+tnoremap <silent> <C-l> <C-\><C-n>:FloatermNext<CR>
+tnoremap <silent> <C-h> <C-\><C-n>:FloatermPrev<CR>
+tnoremap <silent> <Leader>q <C-\><C-n>:FloatermKill<CR>
+let g:floaterm_keymap_new    = '<Leader>n'
+let g:floaterm_keymap_toggle = '<Leader>t'
+let g:floaterm_height = 0.75
+let g:floaterm_width = 0.75
 
 " vimade
 autocmd! FocusLost * VimadeFadeActive
@@ -101,7 +107,6 @@ let g:workspace_autosave_always = 1
 
 " fzf settings
 let g:fzf_command_prefix = 'Fzf'
-" let g:fzf_preview_window = 'right:60%'
 
 " fzf maps
 nnoremap <leader>b :FzfBuffers<CR>
@@ -112,6 +117,7 @@ map <silent> <leader>gd <Plug>(coc-definition)
 map <silent> <leader>gr <Plug>(coc-references)
 map <silent> <leader>gc <Plug>(coc-rename)
 nnoremap <silent> <leader>gg :call <SID>show_documentation()<CR>
+map <leader>d :CocRestart<CR><CR>
 
 " tmux navigator
 let g:tmux_navigator_no_mappings = 1
@@ -143,21 +149,20 @@ nnoremap <Leader>f :%!jq .<CR>
 nnoremap <Leader><Leader> :cclose<CR>
 nnoremap <Bar> :close<CR>
 nnoremap "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
-nnoremap <Leader>o "ayiwOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
-map <Leader>h <c-w>h
-map <Leader>j <c-w>j
-map <Leader>k <c-w>k
-map <Leader>l <c-w>l
-map <c-j> <c-d>zz
-map <c-k> <c-u>zz
-map <silent> <c-q> :wq<CR>
-map j jzz
-map k kzz
-map <silent> <tab> :bnext<CR>
-map <silent> <s-tab> :bprev<CR>
-map <silent> <leader><tab> :e#<CR>
+nnoremap <Leader>ok "ayiwOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
+nnoremap <Leader>oj "ayiwoconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
+nnoremap <Leader>h <c-w>h
+nnoremap <Leader>j <c-w>j
+nnoremap <Leader>k <c-w>k
+nnoremap <Leader>l <c-w>l
+nnoremap <silent> <c-q> :wq<CR>
+nnoremap j jzz
+nnoremap k kzz
+nnoremap <silent> <tab> :bnext<CR>
+nnoremap <silent> <s-tab> :bprev<CR>
+nnoremap <silent> <leader><tab> :e#<CR>
+nnoremap + <C-w>>
+nnoremap _ <C-w><
 
 xnoremap <Leader>o "ayOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
 
-tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
-tnoremap <Leader>x :bd!<CR>
