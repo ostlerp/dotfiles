@@ -12,8 +12,6 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'mhinz/vim-startify'
 Plug 'jremmen/vim-ripgrep'
 Plug 'ap/vim-buftabline'
-Plug 'TaDaa/vimade'
-" Plug 'rafaqz/ranger.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
@@ -91,12 +89,6 @@ let g:floaterm_keymap_toggle = '<Leader>t'
 let g:floaterm_height = 0.75
 let g:floaterm_width = 0.75
 
-" vimade
-autocmd! FocusLost * VimadeFadeActive
-autocmd! FocusGained * VimadeUnfadeActive
-let g:vimade = {}
-let g:vimade.fadelevel = 0.3
-
 " easymotion
 nmap s <Plug>(easymotion-s)
 map <Leader>+ <Plug>(easymotion-prefix)
@@ -147,7 +139,6 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>f :%!jq .<CR>
 nnoremap <Leader><Leader> :cclose<CR>
-nnoremap <Bar> :close<CR>
 nnoremap "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
 nnoremap <Leader>ok "ayiwOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
 nnoremap <Leader>oj "ayiwoconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
@@ -164,5 +155,6 @@ nnoremap <silent> <leader><tab> :e#<CR>
 nnoremap + <C-w>>
 nnoremap _ <C-w><
 
-xnoremap <Leader>o "ayOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
+xnoremap <Leader>ok "ayOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
+xnoremap <Leader>oj "ayoconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
 
