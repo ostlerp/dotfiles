@@ -158,3 +158,8 @@ nnoremap _ <C-w><
 xnoremap <Leader>ok "ayOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
 xnoremap <Leader>oj "ayoconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
 
+nnoremap <C-space> <Esc>
+vnoremap <C-space> <Esc>gV
+onoremap <C-space> <Esc>
+cnoremap <C-space> <C-C><Esc>
+inoremap <C-space> <Esc>`^
