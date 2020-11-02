@@ -45,30 +45,25 @@ windows:
       layout: main-vertical
       panes:
         -
-        -
   - rent-js-api: 
       root: ~/Documents/rent-js-api/
       layout: main-vertical
       panes:
-        -
         -
   - rent-js: 
       root: ~/Documents/rent-js/
       layout: main-vertical
       panes:
         -
-        -
   - ui-ux: 
       root: ~/Documents/ui-ux/
       layout: main-vertical
       panes:
         -
-        -
   - truesearch:
       root: ~/Documents/true-search/
       layout: main-vertical
       panes:
-        -
         -
   - term:
       root: ~/

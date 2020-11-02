@@ -50,7 +50,7 @@ set nobackup
 set noruler
 set noswapfile
 set nowrap
-set number relativenumber
+set number
 set shiftwidth=2
 set smartcase
 set smartindent
