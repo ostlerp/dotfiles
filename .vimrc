@@ -163,3 +163,6 @@ vnoremap <C-space> <Esc>gV
 onoremap <C-space> <Esc>
 cnoremap <C-space> <C-C><Esc>
 inoremap <C-space> <Esc>`^
+
+nnoremap E $
+xnoremap E $
