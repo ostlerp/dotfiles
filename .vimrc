@@ -133,7 +133,7 @@ nnoremap <Leader>s :Rg<CR>
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <silent> <Leader>c :let @* = expand("%")<CR>
 nnoremap <silent> <Leader>C :OpenGithub<CR>
-nnoremap <Leader>x :bd<CR>
+nnoremap <Leader>x :bp\|bd #<CR>
 nnoremap <Leader>X :bufdo bd<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
@@ -164,5 +164,5 @@ onoremap <C-space> <Esc>
 cnoremap <C-space> <C-C><Esc>
 inoremap <C-space> <Esc>`^
 
-nnoremap E $
-xnoremap E $
+nnoremap E $V%
+xnoremap E $V%
