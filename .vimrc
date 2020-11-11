@@ -110,6 +110,8 @@ map <silent> <leader>gr <Plug>(coc-references)
 map <silent> <leader>gc <Plug>(coc-rename)
 nnoremap <silent> <leader>gg :call <SID>show_documentation()<CR>
 map <leader>d :CocRestart<CR><CR>
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-html', 'coc-tsserver', 'coc-yaml']
+
 
 " tmux navigator
 let g:tmux_navigator_no_mappings = 1
