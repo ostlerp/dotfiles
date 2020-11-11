@@ -23,6 +23,7 @@ Plug 'ap/vim-css-color'
 Plug 'liuchengxu/vim-which-key'
 Plug 'k0kubun/vim-open-github'
 Plug 'voldikss/vim-floaterm'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " tpope
 Plug 'tpope/vim-repeat'
@@ -105,11 +106,11 @@ nnoremap <leader>b :FzfBuffers<CR>
 nnoremap <c-p> :FzfGFiles<CR>
 
 " coc maps
-map <silent> <leader>gd <Plug>(coc-definition)
-map <silent> <leader>gr <Plug>(coc-references)
-map <silent> <leader>gc <Plug>(coc-rename)
+nnoremap <silent> <leader>gd <Plug>(coc-definition)
+nnoremap <silent> <leader>gr <Plug>(coc-references)
+nnoremap <silent> <leader>gc <Plug>(coc-rename)
 nnoremap <silent> <leader>gg :call <SID>show_documentation()<CR>
-map <leader>d :CocRestart<CR><CR>
+nnoremap <leader>d :CocRestart<CR><CR>
 let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-html', 'coc-tsserver', 'coc-yaml']
 
 
