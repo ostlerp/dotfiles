@@ -24,6 +24,7 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'k0kubun/vim-open-github'
 Plug 'voldikss/vim-floaterm'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'TaDaa/vimade'
 
 " tpope
 Plug 'tpope/vim-repeat'
@@ -90,6 +91,12 @@ let g:floaterm_keymap_toggle = '<Leader>t'
 let g:floaterm_height = 0.75
 let g:floaterm_width = 0.75
 
+" vimade
+autocmd! FocusLost * VimadeFadeActive
+autocmd! FocusGained * VimadeUnfadeActive
+let g:vimade = {}
+let g:vimade.fadelevel = 0.3
+
 " easymotion
 nmap s <Plug>(easymotion-s)
 map <Leader>+ <Plug>(easymotion-prefix)
@@ -111,7 +118,8 @@ nnoremap <silent> <leader>gr <Plug>(coc-references)
 nnoremap <silent> <leader>gc <Plug>(coc-rename)
 nnoremap <silent> <leader>gg :call <SID>show_documentation()<CR>
 nnoremap <leader>d :CocRestart<CR><CR>
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-html', 'coc-tsserver', 'coc-yaml']
+nnoremap <leader>S :CocList --normal gstatus<CR>
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-html', 'coc-tsserver', 'coc-yaml', 'coc-sh']
 
 
 " tmux navigator
