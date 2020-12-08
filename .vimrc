@@ -175,5 +175,5 @@ onoremap <C-space> <Esc>
 cnoremap <C-space> <C-C><Esc>
 inoremap <C-space> <Esc>`^
 
-nnoremap E $V%
-xnoremap E $V%
+nnoremap E $
+xnoremap E $
