@@ -147,7 +147,6 @@ nnoremap <silent> <Leader>C :OpenGithub<CR>
 nnoremap <Leader>x :bp\|bd #<CR>
 nnoremap <Leader>X :bufdo bd<CR>
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
 nnoremap <Leader>f :%!jq .<CR>
 nnoremap <Leader><Leader> :cclose<CR>
 nnoremap "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
@@ -165,6 +164,8 @@ nnoremap <silent> <s-tab> :bprev<CR>
 nnoremap <silent> <leader><tab> :e#<CR>
 nnoremap + <C-w>>
 nnoremap _ <C-w><
+nnoremap E $
+xnoremap E $
 
 xnoremap <Leader>ok "ayOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
 xnoremap <Leader>oj "ayoconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a)<Esc>
@@ -174,6 +175,3 @@ vnoremap <C-space> <Esc>gV
 onoremap <C-space> <Esc>
 cnoremap <C-space> <C-C><Esc>
 inoremap <C-space> <Esc>`^
-
-nnoremap E $
-xnoremap E $
