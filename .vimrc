@@ -12,14 +12,12 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 call plug#begin('~/.vim/plugged')
 
-" Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kshenoy/vim-signature'
 Plug 'gruvbox-community/gruvbox'
 Plug 'easymotion/vim-easymotion'
 Plug 'romainl/vim-cool'
 Plug 'djoshea/vim-autoread'
-Plug 'thaerkh/vim-workspace'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mhinz/vim-startify'
 Plug 'jremmen/vim-ripgrep'
@@ -33,16 +31,15 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ap/vim-css-color'
 Plug 'liuchengxu/vim-which-key'
-Plug 'k0kubun/vim-open-github'
+Plug 'tyru/open-browser.vim'
+Plug 'tyru/open-browser-github.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'TaDaa/vimade'
-" post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-" Plug 'leafgarland/typescript-vim'
-" Plug 'peitalin/vim-jsx-typescript'
-" Plug 'joonty/vdebug'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'jparise/vim-graphql'
+
+Plug 'neovim/nvim-lspconfig'
 
 " tpope
 Plug 'tpope/vim-repeat'
@@ -70,29 +67,29 @@ set nobackup
 set noruler
 set noswapfile
 set nowrap
-set number
+set number relativenumber
 set shiftwidth=2
 set smartcase
 set smartindent
 set splitbelow
 set splitright
-" set tabstop=2
 set undodir=~/.vim/undodir
 set wildmenu
 set cursorline
 set shiftround
+set path=.,,**
 
 syntax on
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
 
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " set filetypes as typescriptreact
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 set statusline=
 set statusline+=%f
 set statusline+=%m
+set statusline+=%y
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -113,19 +110,9 @@ let g:floaterm_height = 0.75
 let g:floaterm_width = 0.75
 let g:floaterm_opener = 'edit'
 
-" vimade
-autocmd! FocusLost * VimadeFadeActive
-autocmd! FocusGained * VimadeUnfadeActive
-let g:vimade = {}
-let g:vimade.fadelevel = 0.3
-
 " easymotion
 nmap s <Plug>(easymotion-s)
 map <Leader>+ <Plug>(easymotion-prefix)
-
-" vim session
-let g:workspace_persist_undo_history = 0
-let g:workspace_autosave_always = 1
 
 " fzf settings
 let g:fzf_command_prefix = 'Fzf'
@@ -135,16 +122,24 @@ nnoremap <leader>b :FzfBuffers<CR>
 nnoremap <c-p> :FzfGFiles<CR>
 
 " coc maps
-map <silent> <leader>gd <Plug>(coc-definition)
-map <silent> <leader>gr <Plug>(coc-references)
-nnoremap <silent> <leader>gc <Plug>(coc-rename)
+" map <silent> <leader>gd <Plug>(coc-definition)
+" map <silent> <leader>gr <Plug>(coc-references)
+" nnoremap <silent> <leader>gc <Plug>(coc-rename)
 nnoremap <silent> <leader>gg :call <SID>show_documentation()<CR>
 vmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>a <Plug>(coc-codeaction-selected)
 nnoremap <leader>d :CocRestart<CR><CR>
 nnoremap <leader>S :CocList --normal gstatus<CR>
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-html', 'coc-tsserver', 'coc-yaml', 'coc-sh', 'coc-eslint', 'coc-prettier', 'coc-phpactor', 'coc-spell-checker']
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-html', 'coc-tsserver', 'coc-yaml', 'coc-sh', 'coc-eslint', 'coc-prettier', 'coc-phpactor', 'coc-spell-checker', 'coc-lua']
 nnoremap <silent><leader>F :CocCommand prettier.formatFile<CR>
+
+" nvim lsp
+set completeopt=menuone,noinsert,noselect
+let g:completion_matching_strategy_list = [ 'exact', 'substring', 'fuzzy' ]
+let g:completion_matching_smart_case = 1
+lua require'lspconfig'.tsserver.setup{}
+lua require'lspconfig'.vimls.setup{}
+lua require'lspconfig'.graphql.setup{}
 
 " tmux navigator
 let g:tmux_navigator_no_mappings = 1
@@ -163,23 +158,20 @@ endfunction
 nnoremap <silent> <leader> :WhichKey '\'<CR>
 
 " maps
-" nnoremap <Leader>a ggVG
 nnoremap <Leader>s :Rg<CR>
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <silent> <Leader>c :let @* = expand("%")<CR>
-nnoremap <silent> <Leader>C :OpenGithub<CR>
+nnoremap <silent> <Leader>C :OpenGithubFile<CR>
 nnoremap <Leader>x :bp\|bd #<CR>
 nnoremap <Leader>X :bufdo bd<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>f :%!jq .<CR>
-nnoremap <Leader><Leader> :cclose<CR>
+nnoremap <Leader>\ :cclose<CR>
 nnoremap "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
-nnoremap <Leader>ok "ayiwOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
-nnoremap <Leader>oj "ayiwoconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
 nnoremap <Leader>h <c-w>h
 nnoremap <Leader>j <c-w>j
 nnoremap <Leader>k <c-w>k
-noremap <Leader>l <c-w>l
+nnoremap <Leader>l <c-w>l
 nnoremap <silent> <c-q> :wq<CR>
 nnoremap j jzz
 nnoremap k kzz
@@ -193,11 +185,16 @@ xnoremap E $
 nnoremap B ^
 xnoremap B ^
 
-xnoremap <Leader>ok "ayOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
-xnoremap <Leader>oj "ayoconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
+autocmd FileType php setlocal iskeyword+=$
 
-nnoremap <C-space> <Esc>
-vnoremap <C-space> <Esc>gV
-onoremap <C-space> <Esc>
-cnoremap <C-space> <C-C><Esc>
-inoremap <C-space> <Esc>`^
+autocmd FileType php xnoremap <buffer> <Leader>ok "ayOerror_log('<C-R>=expand("%:t")<CR> - <C-R>a: ' . var_export(<C-R>a, true));<Esc>
+autocmd FileType php xnoremap <buffer> <Leader>oj "ayoerror_log('<C-R>=expand("%:t")<CR> - <C-R>a: ' . var_export(<C-R>a, true));<Esc>
+autocmd FileType php nnoremap <buffer> <Leader>ok "ayiwOerror_log('<C-R>=expand("%:t")<CR> - <C-R>a: ' . var_export(<C-R>a, true));<Esc>
+autocmd FileType php nnoremap <buffer> <Leader>oj "ayiwoerror_log('<C-R>=expand("%:t")<CR> - <C-R>a: ' . var_export(<C-R>a, true));<Esc>
+
+autocmd FileType javascript,typescript xnoremap <buffer> <Leader>ok "ayOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
+autocmd FileType javascript,typescript xnoremap <buffer> <Leader>oj "ayoconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
+autocmd FileType javascript,typescript nnoremap <buffer> <Leader>ok "ayiwOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
+autocmd FileType javascript,typescript nnoremap <buffer> <Leader>oj "ayiwoconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
+
+nnoremap <Leader>gd *Gn
