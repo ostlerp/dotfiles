@@ -38,7 +38,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'jparise/vim-graphql'
-
 Plug 'neovim/nvim-lspconfig'
 
 " tpope
@@ -122,8 +121,8 @@ nnoremap <leader>b :FzfBuffers<CR>
 nnoremap <c-p> :FzfGFiles<CR>
 
 " coc maps
-" map <silent> <leader>gd <Plug>(coc-definition)
-" map <silent> <leader>gr <Plug>(coc-references)
+map <silent> <leader>gd <Plug>(coc-definition)
+map <silent> <leader>gr <Plug>(coc-references)
 " nnoremap <silent> <leader>gc <Plug>(coc-rename)
 nnoremap <silent> <leader>gg :call <SID>show_documentation()<CR>
 vmap <leader>a <Plug>(coc-codeaction-selected)
@@ -192,9 +191,8 @@ autocmd FileType php xnoremap <buffer> <Leader>oj "ayoerror_log('<C-R>=expand("%
 autocmd FileType php nnoremap <buffer> <Leader>ok "ayiwOerror_log('<C-R>=expand("%:t")<CR> - <C-R>a: ' . var_export(<C-R>a, true));<Esc>
 autocmd FileType php nnoremap <buffer> <Leader>oj "ayiwoerror_log('<C-R>=expand("%:t")<CR> - <C-R>a: ' . var_export(<C-R>a, true));<Esc>
 
-autocmd FileType javascript,typescript xnoremap <buffer> <Leader>ok "ayOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
-autocmd FileType javascript,typescript xnoremap <buffer> <Leader>oj "ayoconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
-autocmd FileType javascript,typescript nnoremap <buffer> <Leader>ok "ayiwOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
-autocmd FileType javascript,typescript nnoremap <buffer> <Leader>oj "ayiwoconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
+autocmd FileType javascript,typescript,typescriptreact xnoremap <buffer> <Leader>ok "ayOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
+autocmd FileType javascript,typescript,typescriptreact xnoremap <buffer> <Leader>oj "ayoconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
+autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <Leader>ok "ayiwOconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
+autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <Leader>oj "ayiwoconsole.log('<C-R>=expand("%t")<CR> - <C-R>a:', <C-R>a);<Esc>
 
-nnoremap <Leader>gd *Gn
